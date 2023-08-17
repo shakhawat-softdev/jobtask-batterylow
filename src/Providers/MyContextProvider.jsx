@@ -24,6 +24,10 @@ export function MyContextProvider({ children }) {
    const [userInput_minY, setUserInput_minY] = useState('');
    const [userInput_minZ, setUserInput_minZ] = useState('');
 
+   const [valueOfX, setValueOfX] = useState([]);
+   const [valueOfY, setValueOfY] = useState([]);
+   const [valueOfZ, setValueOfZ] = useState([]);
+
 
    const contextValue = {
       maxX,
@@ -55,6 +59,13 @@ export function MyContextProvider({ children }) {
       client, setClient,
       contractor, setContractor,
       csvFile, setCsvFile,
+
+      valueOfX,
+      valueOfY,
+      valueOfZ,
+      setValueOfX,
+      setValueOfY,
+      setValueOfZ,
    };
 
    return <MyContext.Provider value={contextValue}>{children}</MyContext.Provider>;

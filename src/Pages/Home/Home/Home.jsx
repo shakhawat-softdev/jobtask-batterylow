@@ -32,11 +32,19 @@ const Home = () => {
       projectDescription, setProjectDescription,
       client, setClient,
       contractor, setContractor,
-      csvFile, setCsvFile, } = useMyContext();
+      csvFile, setCsvFile,
+      valueOfX,
+      valueOfY,
+      valueOfZ,
+      setValueOfX,
+      setValueOfY,
+      setValueOfZ,
+
+   } = useMyContext();
+
+
 
    // console.log(maxX);
-
-
    const [step, setStep] = useState(1);
 
 
@@ -59,9 +67,15 @@ const Home = () => {
 
             // console.log(values[0]);
 
-            const xValues = values.map((row) => parseFloat(row[headers.indexOf('X')])).filter(val => isNaN(val) === false);
-            const yValues = values.map((row) => parseFloat(row[headers.indexOf('Y')])).filter(val => isNaN(val) === false);
-            const zValues = values.map((row) => parseFloat(row[headers.indexOf('Z')])).filter(val => isNaN(val) === false);
+            const xValues = values.map((row) => parseFloat(row[headers.indexOf('X')])).filter(valu => isNaN(valu) === false);
+            const yValues = values.map((row) => parseFloat(row[headers.indexOf('Y')])).filter(valu => isNaN(valu) === false);
+            const zValues = values.map((row) => parseFloat(row[headers.indexOf('Z')])).filter(valu => isNaN(valu) === false);
+
+            setValueOfX(xValues);
+            setValueOfY(yValues);
+            setValueOfZ(zValues);
+
+
 
 
             console.log("Value of X index: ", xValues);

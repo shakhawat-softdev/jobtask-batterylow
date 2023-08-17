@@ -24,6 +24,7 @@ export function MyContextProvider({ children }) {
    const [userInput_minY, setUserInput_minY] = useState('');
    const [userInput_minZ, setUserInput_minZ] = useState('');
 
+   const [valueOfKP, setValueOfKP] = useState([]);
    const [valueOfX, setValueOfX] = useState([]);
    const [valueOfY, setValueOfY] = useState([]);
    const [valueOfZ, setValueOfZ] = useState([]);
@@ -66,6 +67,8 @@ export function MyContextProvider({ children }) {
       setValueOfX,
       setValueOfY,
       setValueOfZ,
+      valueOfKP,
+      setValueOfKP
    };
 
    return <MyContext.Provider value={contextValue}>{children}</MyContext.Provider>;

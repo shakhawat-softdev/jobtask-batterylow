@@ -1,48 +1,14 @@
 
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import Papa from 'papaparse'; // For parsing CSV files
 import { Link } from 'react-router-dom';
 import { useMyContext } from '../../../Providers/MyContextProvider';
 
+
+
 const Home = () => {
 
-   const { maxX, setMaxX, minX,
-      maxY,
-      minY,
-      maxZ,
-      minZ,
-      setMinX,
-      setMaxY,
-      setMinY,
-      setMaxZ,
-      setMinZ,
-      userInput_maxX,
-      userInput_maxY,
-      userInput_maxZ,
-      userInput_minX,
-      userInput_minY,
-      userInput_minZ,
-      setUserInput_MaxX,
-      setUserInput_maxY,
-      setUserInput_maxZ,
-      setUserInput_minX,
-      setUserInput_minY,
-      setUserInput_minZ,
-      projectName, setProjectName,
-      projectDescription, setProjectDescription,
-      client, setClient,
-      contractor, setContractor,
-      csvFile, setCsvFile,
-      valueOfX,
-      valueOfY,
-      valueOfZ,
-      setValueOfX,
-      setValueOfY,
-      setValueOfZ,
-
-   } = useMyContext();
-
-
+   const { maxX, setMaxX, minX, maxY, minY, maxZ, minZ, setMinX, setMaxY, setMinY, setMaxZ, setMinZ, userInput_maxX, userInput_maxY, userInput_maxZ, userInput_minX, userInput_minY, userInput_minZ, setUserInput_MaxX, setUserInput_maxY, setUserInput_maxZ, setUserInput_minX, setUserInput_minY, setUserInput_minZ, projectName, setProjectName, projectDescription, setProjectDescription, client, setClient, contractor, setContractor, csvFile, setCsvFile, valueOfX, valueOfY, valueOfZ, setValueOfX, setValueOfY, setValueOfZ, valueOfKP, setValueOfKP } = useMyContext();
 
    // console.log(maxX);
    const [step, setStep] = useState(1);
@@ -61,26 +27,19 @@ const Home = () => {
                return;
             }
 
-
             const headers = data[0];
             const values = data.slice(1);
 
             // console.log(values[0]);
-
+            const kPValues = values.map((row) => parseFloat(row[headers.indexOf('KP')])).filter(valu => isNaN(valu) === false);
             const xValues = values.map((row) => parseFloat(row[headers.indexOf('X')])).filter(valu => isNaN(valu) === false);
             const yValues = values.map((row) => parseFloat(row[headers.indexOf('Y')])).filter(valu => isNaN(valu) === false);
             const zValues = values.map((row) => parseFloat(row[headers.indexOf('Z')])).filter(valu => isNaN(valu) === false);
 
+            setValueOfKP(kPValues);
             setValueOfX(xValues);
             setValueOfY(yValues);
             setValueOfZ(zValues);
-
-
-
-
-            console.log("Value of X index: ", xValues);
-            console.log("Value of Y index: ", yValues);
-            console.log("Value of Z index: ", zValues);
 
             setMaxX(Math.max(...xValues));
             setMinX(Math.min(...xValues));
@@ -104,6 +63,7 @@ const Home = () => {
 
             <div className='border-2 p-8 bg-slate-100 rounded-md'>
                <h2 className="text-xl font-semibold mb-4">Prototype for XYZ Company</h2>
+
                <form onSubmit={handleSubmitStep1} className="space-y-4 ">
                   <div className='grid grid-cols-3 gap-2 place-items-center'>
                      {/* Project Name */}
@@ -171,67 +131,23 @@ const Home = () => {
                            </div>
 
                         </div>}
-                     <Link to={'/result'}><button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" > Next </button></Link>
-                  </div>
 
+                     <div className='space-x-3'>
+                        <Link to={'/result'}><button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" > Next </button></Link>
+
+                        {csvFile && <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" > Show Chart </button>}
+                     </div>
+
+                  </div>
                </form>
             </div>
          )}
 
-
-
-         {/* {step === 2 && (
-            <div className="space-y-4 w-[700px]  border-2 p-8 bg-slate-100 rounded-md">
-
-               <div className='p-5'>
-                  <div>
-                     <h3 className="text-lg font-semibold">Step 1 Details</h3>
-                     <div className=' w-full space-y-3 p-3'>
-                        <p>Project Name: {projectName}</p>
-                        <p>Project Description: {projectDescription}</p>
-                        <p>Client: {client}</p>
-                        <p>Contractor: {contractor}</p>
-                     </div>
-                  </div>
-
-
-                
-                  {csvFile ? <div>
-                     <h3 className="text-lg font-semibold ">Step 2 Details</h3>
-                     <div className="grid grid-cols-2 gap-4 p-3">
-                        <p>Max X: {isNaN(maxX) ? 'N/A' : maxX}</p>
-                        <p>Min X: {isNaN(minX) ? 'N/A' : minX}</p>
-                        <p>Max Y: {isNaN(maxY) ? 'N/A' : maxY}</p>
-                        <p>Min Y: {isNaN(minY) ? 'N/A' : minY}</p>
-                        <p>Max Z: {isNaN(maxZ) ? 'N/A' : maxZ}</p>
-                        <p>Min Z: {isNaN(minZ) ? 'N/A' : minZ}</p>
-                     </div>
-                  </div> :
-                     <div>
-                        <h3 className="text-lg font-semibold ">Step 2 Details</h3>
-                        <div className="grid grid-cols-2 gap-4 p-3">
-                           <p>Max X: {userInput_maxX}</p>
-                           <p>Min X: {userInput_minX}</p>
-                           <p>Max Y: {userInput_maxY}</p>
-                           <p>Min Y: {userInput_minY}</p>
-                           <p>Max Z: {userInput_maxZ}</p>
-                           <p>Min Z: {userInput_minZ}</p>
-                        </div>
-                     </div>
-                  }
-
-
-
-
-               </div>
-
+         {step === 2 && (
+            <div>
+               React Chart
             </div>
-         )} */}
-
-
-
-
-
+         )}
       </div>
    );
 }

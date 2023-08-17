@@ -3,42 +3,14 @@ import { useMyContext } from '../../../Providers/MyContextProvider';
 import jsPDF from "jspdf";
 import ReactDOMServer from "react-dom/server";
 
+
 const Result = () => {
 
 
 
-   const { maxX, setMaxX, minX,
-      maxY,
-      minY,
-      maxZ,
-      minZ,
-      setMinX,
-      setMaxY,
-      setMinY,
-      setMaxZ,
-      setMinZ,
-      userInput_maxX,
-      userInput_maxY,
-      userInput_maxZ,
-      userInput_minX,
-      userInput_minY,
-      userInput_minZ,
-      setUserInput_MaxX,
-      setUserInput_maxY,
-      setUserInput_maxZ,
-      setUserInput_minX,
-      setUserInput_minY,
-      setUserInput_minZ,
-      projectName, setProjectName,
-      projectDescription, setProjectDescription,
-      client, setClient,
-      contractor, setContractor,
-      csvFile, setCsvFile,
-      valueOfX,
-      valueOfY,
-      valueOfZ,
+   const { maxX, setMaxX, minX, maxY, minY, maxZ, minZ, setMinX, setMaxY, setMinY, setMaxZ, setMinZ, userInput_maxX, userInput_maxY, userInput_maxZ, userInput_minX, userInput_minY, userInput_minZ, setUserInput_MaxX, setUserInput_maxY, setUserInput_maxZ, setUserInput_minX, setUserInput_minY, setUserInput_minZ, projectName, setProjectName, projectDescription, setProjectDescription, client, setClient, contractor, setContractor, csvFile, setCsvFile, valueOfX, valueOfY, valueOfZ, } = useMyContext();
 
-   } = useMyContext();
+
 
    const exportPDF = () => {
       let element = (
@@ -94,8 +66,8 @@ const Result = () => {
 
    return (
       <div className='mx-auto grid place-items-center'>
-         <div className='mx-auto'>
-            <button onClick={exportPDF}>DownLoad PDF</button>
+         <div className='mx-auto relative'>
+            <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 absolute right-0 top-7" onClick={exportPDF}>Download PDF</button>
             <h2>This Result Page</h2>
             <div className="space-y-4 w-[700px]  border-2 p-8 bg-slate-100 rounded-md">
 

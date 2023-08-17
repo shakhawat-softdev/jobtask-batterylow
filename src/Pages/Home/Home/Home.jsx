@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Papa from 'papaparse'; // For parsing CSV files
 import { Link } from 'react-router-dom';
 import { useMyContext } from '../../../Providers/MyContextProvider';
+import Banner1 from '../Banner1';
 
 
 
@@ -57,14 +58,14 @@ const Home = () => {
    };
 
    return (
-      <div className="p-8 grid place-content-center ">
+      <div className="p-5 grid place-content-center ">
 
          {step === 1 && (
 
-            <div className='border-2 p-8 bg-slate-100 rounded-md'>
-               <h2 className="text-xl font-semibold mb-4">Prototype for XYZ Company</h2>
+            <div className='border-2 p-12 bg-slate-100 rounded-md'>
+               <h2 className="text-xl font-semibold mb-4">Track Record Form</h2>
 
-               <form onSubmit={handleSubmitStep1} className="space-y-4 ">
+               <form onSubmit={handleSubmitStep1} className="space-y-3  w-[700px]">
                   <div className='grid grid-cols-3 gap-2 place-items-center'>
                      {/* Project Name */}
                      <div>
@@ -89,7 +90,7 @@ const Home = () => {
                   </div>
 
                   {/* Csv submit button */}
-                  <div className='space-y-2 mb-2'>
+                  <div className='space-y-5 mb-2'>
                      {/* Csv */}
 
                      <label className="block font-medium">Upload CSV File:</label>
@@ -101,7 +102,7 @@ const Home = () => {
                      {!csvFile &&
                         <div className='space-y-3'>
                            <h2>Or</h2>
-                           <h4 className='font-medium'>Please Minimum and Maximum value of X, Y, Z field</h4>
+                           <h4 className='font-normal bg-slate-200 p-1'>Enter the minimum and maximum value of X, Y, Z field</h4>
                            <div className='grid grid-cols-3 gap-2 place-items-center'>
                               <div>
                                  <label className="block font-medium">Enter Min Value of X</label>
@@ -148,6 +149,8 @@ const Home = () => {
                React Chart
             </div>
          )}
+
+         <Banner1 />
       </div>
    );
 }

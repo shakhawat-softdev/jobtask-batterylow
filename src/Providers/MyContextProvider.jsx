@@ -3,10 +3,10 @@ import React, { createContext, useContext, useState } from 'react';
 const MyContext = createContext(null);
 
 export function MyContextProvider({ children }) {
-   const [projectName, setProjectName] = useState('');
-   const [projectDescription, setProjectDescription] = useState('');
+   const [projectName, setProjectName] = useState(null);
+   const [projectDescription, setProjectDescription] = useState(null);
    const [client, setClient] = useState('');
-   const [contractor, setContractor] = useState('');
+   const [contractor, setContractor] = useState(null);
    const [csvFile, setCsvFile] = useState(null);
 
    const [maxX, setMaxX] = useState('');

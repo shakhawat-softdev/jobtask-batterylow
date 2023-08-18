@@ -69,7 +69,7 @@ const Result = () => {
          <div className='mx-auto relative'>
             <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 absolute right-14 top-6" onClick={exportPDF}>Download PDF</button>
             {/* <h2>This Result Page</h2> */}
-            <div className="space-y-4 w-[700px]  border-2 p-8 bg-slate-100 rounded-md">
+            <div className="space-y-4 w-[700px]  border-2 p-8 rounded-md">
                <h2>Track Record Result</h2>
                <div className='p-5 my-5'>
 

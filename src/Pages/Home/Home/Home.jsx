@@ -164,7 +164,7 @@ const Home = () => {
             </div>
          )}
 
-         {/* <Banner1 /> */}
+
       </div>
    );
 }

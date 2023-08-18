@@ -4,11 +4,10 @@ import jsPDF from "jspdf";
 import ReactDOMServer from "react-dom/server";
 
 
+
 const Result = () => {
 
-
-
-   const { maxX, setMaxX, minX, maxY, minY, maxZ, minZ, setMinX, setMaxY, setMinY, setMaxZ, setMinZ, userInput_maxX, userInput_maxY, userInput_maxZ, userInput_minX, userInput_minY, userInput_minZ, setUserInput_MaxX, setUserInput_maxY, setUserInput_maxZ, setUserInput_minX, setUserInput_minY, setUserInput_minZ, projectName, setProjectName, projectDescription, setProjectDescription, client, setClient, contractor, setContractor, csvFile, setCsvFile, valueOfX, valueOfY, valueOfZ, } = useMyContext();
+   const { maxX, minX, maxY, minY, maxZ, minZ, userInput_maxX, userInput_maxY, userInput_maxZ, userInput_minX, userInput_minY, userInput_minZ, projectName, projectDescription, client, contractor, csvFile, valueOfX, valueOfY, valueOfZ, } = useMyContext();
 
 
 
@@ -16,9 +15,11 @@ const Result = () => {
       let element = (
          <div className="space-y-4 w-[700px]  border-2 p-8 bg-slate-100 rounded-md">
 
+
+            {/* For PDF */}
             <div className='p-5'>
                <div>
-                  <h3 className="text-lg font-semibold">Step 1 Details</h3>
+                  <h3 className="text-lg font-semibold">Result</h3>
                   <div className=' w-full space-y-3 p-3'>
                      <p>Project Name: {projectName}</p>
                      <p>Project Description: {projectDescription}</p>
@@ -27,10 +28,9 @@ const Result = () => {
                   </div>
                </div>
 
-
                {/* Display other Step 1 details */}
                {csvFile ? <div>
-                  <h3 className="text-lg font-semibold ">Step 2 Details</h3>
+                  <h3 className="text-lg font-semibold ">Result Details</h3>
                   <div className="grid grid-cols-2 gap-4 p-3">
                      <p>Max X: {isNaN(maxX) ? 'N/A' : maxX}</p>
                      <p>Min X: {isNaN(minX) ? 'N/A' : minX}</p>
@@ -41,7 +41,7 @@ const Result = () => {
                   </div>
                </div> :
                   <div>
-                     <h3 className="text-lg font-semibold ">Step 2 Details</h3>
+                     <h3 className="text-lg font-semibold ">Result Details</h3>
                      <div className="grid grid-cols-2 gap-4 p-3">
                         <p>Max X: {userInput_maxX}</p>
                         <p>Min X: {userInput_minX}</p>
@@ -52,7 +52,6 @@ const Result = () => {
                      </div>
                   </div>
                }
-
             </div>
          </div>
       );
@@ -64,15 +63,19 @@ const Result = () => {
       });
    };
 
-   return (
-      <div className='mx-auto grid grid-cols-2 place-items-center '>
-         <div className='mx-auto relative'>
-            <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 absolute right-14 top-6" onClick={exportPDF}>Download PDF</button>
-            {/* <h2>This Result Page</h2> */}
-            <div className="space-y-4 w-[700px]  border-2 p-8 rounded-md">
-               <h2>Track Record Result</h2>
-               <div className='p-5 my-5'>
 
+
+
+
+   return (
+      <div className='mx-auto grid md:grid-cols-2 place-items-center '>
+         <div className='mx-auto relative mt-2 '>
+            <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 absolute right-4 md:right-14 top-3 md:top-6" onClick={exportPDF}>Download PDF</button>
+            {/* <h2>This Result Page</h2> */}
+            <div className="space-y-4 md:w-[700px] border-2 p-4 md:p-8 rounded-md md:ml-2">
+               <h2 className='ml-2 md:ml-8'>Track Record Result</h2>
+               <div className="divider bg-black h-[2px] mb-3 "></div>
+               <div className='md:p-5 md:my-5'>
                   <div>
                      <h3 className="text-xl font-semibold bg-gray-300 p-1 pl-3">Details</h3>
                      <div className='font-medium w-full space-y-2 p-3 '>
@@ -95,6 +98,7 @@ const Result = () => {
                         <p>Min Z: <span className='font-normal'>{isNaN(minZ) ? 'N/A' : minZ}</span></p>
                      </div>
                   </div> :
+
                      <div>
                         <h3 className="text-lg font-semibold bg-gray-300 p-1 pl-3">Result of Data</h3>
                         <div className="grid grid-cols-2 gap-4 p-3">
@@ -112,30 +116,33 @@ const Result = () => {
          </div>
 
 
-         {csvFile && <div className='mx-auto mb-10'>
-            <h1 className='text-3xl font-semibold text-center mb-3'>Inpu Values</h1>
-            <div className="overflow-x-auto w-[600px] h-[400px] scroll-my-5  ">
-               <table className="table table-xs w-full">
-                  <thead >
-                     <tr className='grid grid-cols-4  '>
-                        {/* <th>#</th> */}
-                        <th>Valu Of X</th>
-                        <th>Valu Of Y</th>
-                        <th>Valu Of Z</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr className='grid grid-cols-4 place-items-center p-2 '>
-                        {/* <th></th> */}
-                        <td>{valueOfX.map(item => <ul>{item}</ul>)}</td>
-                        <td>{valueOfY.map(item => <ul>{item}</ul>)}</td>
-                        <td>{valueOfZ.map(item => <ul>{item}</ul>)}</td>
+         {csvFile &&
+            <div className='mx-auto mb-10 mt-2'>
+               <h1 className='text-3xl  text-center mb-3'>Input Values</h1>
+               <div className="divider bg-black h-1 mb-2"></div>
+               <div className="overflow-x-auto md:w-[600px] md:h-[400px] scroll-my-5  ">
+                  <table className="table table-xs w-full">
+                     <thead >
+                        <tr className='grid grid-cols-3  '>
+                           {/* <th>#</th> */}
+                           <th>X-Index</th>
+                           <th>Y-Index</th>
+                           <th>Z-Index</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr className='grid grid-cols-3 place-items-center gap-5 p-2 '>
+                           {/* <th></th> */}
+                           <td>{valueOfX.map(item => <ul>{item}</ul>)}</td>
+                           <td>{valueOfY.map(item => <ul>{item}</ul>)}</td>
+                           <td>{valueOfZ.map(item => <ul>{item}</ul>)}</td>
 
-                     </tr>
-                  </tbody>
-               </table>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
             </div>
-         </div>}
+         }
 
       </div>
    );

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useMyContext } from '../../../Providers/MyContextProvider';
 import Banner1 from '../Banner1';
 import { LineChart } from '@mui/x-charts/LineChart';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -63,38 +64,37 @@ const Home = () => {
 
 
    return (
-      <div className="p-5 grid-cols-2 grid place-content-center  ">
-
-
-
-         <div className='border-2 p-12 w-full'>
-            <h2 className="text-xl font-semibold mb-4">Track Record Form</h2>
+      <div className="p-5 md:grid-cols-2 grid place-content-center  ">
+         <div className='border-2 border-teal-400 p-12 w-full mb-7 md:mb-0'>
+            <h2 className="text-xl font-semibold ">Track Record Form</h2>
+            <div className="divider bg-black  h-[2px] mb-3 "></div>
             <form onSubmit={handleSubmitStep1} className="space-y-3">
-               <div className='grid grid-cols-2 gap-2 w-full'>
+               <div className='grid md:grid-cols-2 gap-2 w-full'>
                   {/* Project Name */}
                   <div>
                      <label className="block font-medium">Project Name:</label>
-                     <input required={true} type="text" value={projectName} onChange={(e) => setProjectName(e.target.value)} className=" px-4 py-2 border rounded-lg" />
+                     <input required={true} type="text" value={projectName} onChange={(e) => setProjectName(e.target.value)} className=" px-4 py-1 border-2 border-gray-300 rounded-lg" />
+
                   </div>
                   {/* Project Decription */}
                   <div>
                      <label className="block font-medium">Project Description:</label>
-                     <input required={true} type="text" value={projectDescription} onChange={(e) => setProjectDescription(e.target.value)} className=" px-4 py-2 border rounded-lg" />
+                     <input required={true} type="text" value={projectDescription} onChange={(e) => setProjectDescription(e.target.value)} className=" px-4 py-1 border-2 border-gray-300 rounded-lg" />
                   </div>
                   {/* Client */}
                   <div>
                      <label className="block font-medium">Client:</label>
-                     <input l required={true} type="text" value={client} onChange={(e) => setClient(e.target.value)} className="  px-4 py-2 border rounded-lg" />
+                     <input l required={true} type="text" value={client} onChange={(e) => setClient(e.target.value)} className=" px-4 py-1 border-2 border-gray-300 rounded-lg" />
                   </div>
                   {/* Contractor */}
                   <div>
                      <label className="block font-medium">Constractor:</label>
-                     <input required={true} type="text" value={contractor} onChange={(e) => setContractor(e.target.value)} className="  px-4 py-2 border rounded-lg" />
+                     <input required={true} type="text" value={contractor} onChange={(e) => setContractor(e.target.value)} className="  px-4 py-1 border-2 border-gray-300 rounded-lg" />
                   </div>
                </div>
 
                {/* Csv submit button */}
-               <div className='space-y-5 mb-2 w-full'>
+               <div className='space-y-4 mb-2 w-full'>
                   {/* Csv */}
                   <label className="block font-medium">Upload CSV File:</label>
                   <input type="file" accept=".csv" onChange={handleCsvFileChange} className="w-full" />
@@ -106,35 +106,37 @@ const Home = () => {
                         <div className='grid grid-cols-3 gap-2 place-items-center'>
                            <div>
                               <label className="block text-sm">Enter Min Value of X</label>
-                              <input required={true} type="number" value={userInput_minX} onChange={(e) => setUserInput_minX(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
+                              <input required={true} type="number" value={userInput_minX} onChange={(e) => setUserInput_minX(e.target.value)} className="w-full px-4 py-1 border-2 border-gray-300 rounded-lg" />
                            </div>
                            <div>
                               <label className="block text-sm">Enter Min Value of Y</label>
-                              <input required={true} type="number" value={userInput_minY} onChange={(e) => setUserInput_minY(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
+                              <input required={true} type="number" value={userInput_minY} onChange={(e) => setUserInput_minY(e.target.value)} className="w-full px-4 py-1 border-2 border-gray-300 rounded-lg" />
                            </div>
                            <div>
                               <label className="block text-sm">Enter Min Value of Z</label>
-                              <input required={true} type="number" value={userInput_minZ} onChange={(e) => setUserInput_minZ(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
+                              <input required={true} type="number" value={userInput_minZ} onChange={(e) => setUserInput_minZ(e.target.value)} className="w-full px-4 py-1 border-2 border-gray-300 rounded-lg" />
                            </div>
 
                            <div>
                               <label className="block text-sm">Enter Max Value of X</label>
-                              <input required={true} type="number" value={userInput_maxX} onChange={(e) => setUserInput_MaxX(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
+                              <input required={true} type="number" value={userInput_maxX} onChange={(e) => setUserInput_MaxX(e.target.value)} className="w-full px-4 py-1 border-2 border-gray-300 rounded-lg" />
                            </div>
                            <div>
                               <label className="block text-sm">Enter Max Value of Y</label>
-                              <input required={true} type="number" value={userInput_maxY} onChange={(e) => setUserInput_maxY(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
+                              <input required={true} type="number" value={userInput_maxY} onChange={(e) => setUserInput_maxY(e.target.value)} className="w-full px-4 py-1 border-2 border-gray-300 rounded-lg" />
                            </div>
                            <div>
                               <label className="block text-sm">Enter Max Value of Z</label>
-                              <input required={true} type="number" value={userInput_maxZ} onChange={(e) => setUserInput_maxZ(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
+                              <input required={true} type="number" value={userInput_maxZ} onChange={(e) => setUserInput_maxZ(e.target.value)} className="w-full px-4 py-1 border-2 border-gray-300 rounded-lg" />
                            </div>
                         </div>
 
                      </div>}
 
                   <div className='space-x-3'>
-                     <Link to={'/result'}><button disabled={projectName | projectDescription | client | contractor} type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" > Next </button></Link>
+                     <Link to={'/result'}><button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" > Next </button></Link>
+
+
 
                      {csvFile && <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" > Show Chart </button>}
                   </div>
@@ -145,17 +147,19 @@ const Home = () => {
 
          {step === 2 && (
             <div className='mx-auto'>
-               <h2 className='text-center'>Data Chart</h2>
-               <LineChart
-                  xAxis={[{ data: [...valueOfKP] }]}
-                  series={[
-                     {
-                        data: [...valueOfX],
-                     },
-                  ]}
-                  width={500}
-                  height={300}
-               />
+               <h2 className='text-center font-semibold'>Data Chart</h2>
+               <div className="divider bg-black  h-[2px] mb-3 "></div>
+               <div className=' w-[320px] h-[320px] md:w-[600px] md:h-600px] '>
+                  <LineChart
+                     xAxis={[{ data: [...valueOfKP] }]}
+                     series={[
+                        {
+                           data: [...valueOfX],
+                        },
+                     ]}
+
+                  />
+               </div>
                <p className='text-center'>KP as X axis and X as Y axis</p>
             </div>
          )}

@@ -39,7 +39,7 @@ const Home = () => {
             const zValues = values.map((row) => parseFloat(row[headers.indexOf('Z')])).filter(valu => isNaN(valu) === false);
 
             setValueOfKP(kPValues);
-            console.log(kPValues);
+            // console.log(kPValues);
             setValueOfX(xValues);
             setValueOfY(yValues);
             setValueOfZ(zValues);

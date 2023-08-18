@@ -7,7 +7,7 @@ import ReactDOMServer from "react-dom/server";
 
 const Result = () => {
 
-   const { maxX, minX, maxY, minY, maxZ, minZ, userInput_maxX, userInput_maxY, userInput_maxZ, userInput_minX, userInput_minY, userInput_minZ, projectName, projectDescription, client, contractor, csvFile, valueOfX, valueOfY, valueOfZ, } = useMyContext();
+   const { maxX, minX, maxY, minY, maxZ, minZ, userInput_maxX, userInput_maxY, userInput_maxZ, userInput_minX, userInput_minY, userInput_minZ, projectName, projectDescription, client, contractor, csvFile, valueOfX, valueOfY, valueOfZ, valueOfKP } = useMyContext();
 
 
 
@@ -120,19 +120,20 @@ const Result = () => {
             <div className='mx-auto mb-10 mt-2 '>
                <h1 className='text-3xl  text-center mb-3'>Input Values</h1>
                <div className="divider bg-black h-1 mb-2"></div>
-               <div className="overflow-x-auto md:w-[600px] md:h-[400px] scroll-my-5  ">
+               <div className="overflow-auto md:w-[600px] md:h-[400px] scroll-my-5  ">
                   <table className="table table-xs w-full">
-                     <thead >
-                        <tr className='grid grid-cols-3  place-items-center'>
-                           {/* <th>#</th> */}
+                     <thead className='sticky top-0  bg-stone-300'>
+                        <tr className='grid grid-cols-4  place-items-center'>
+                           <th>KP</th>
                            <th>X-Index</th>
                            <th>Y-Index</th>
                            <th>Z-Index</th>
                         </tr>
                      </thead>
                      <tbody>
-                        <tr className='grid grid-cols-3 place-items-center gap-5 p-2 '>
-                           {/* <th></th> */}
+                        <tr className='grid grid-cols-4 place-items-center gap-5 p-2 '>
+
+                           <td>{valueOfKP.map(item => <ul>{item}</ul>)}</td>
                            <td>{valueOfX.map(item => <ul>{item}</ul>)}</td>
                            <td>{valueOfY.map(item => <ul>{item}</ul>)}</td>
                            <td>{valueOfZ.map(item => <ul>{item}</ul>)}</td>

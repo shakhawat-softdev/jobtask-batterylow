@@ -40,7 +40,7 @@ const Navber = () => {
                {/* <Link className="mr-5 hover:text-gray-900">Third Link</Link>
                <Link className="mr-5 hover:text-gray-900">Fourth Link</Link> */}
             </nav>
-            <label className="swap swap-rotate ml-10">
+            <label className="swap swap-rotate  mt-3 md:mt-0 md:mr-5">
 
                {/* this hidden checkbox controls the state */}
                <input type="checkbox" onChange={handleToggle} />

@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import Papa from 'papaparse'; // For parsing CSV files
 import { Link } from 'react-router-dom';
 import { useMyContext } from '../../../Providers/MyContextProvider';
-import Banner1 from '../Banner1';
 import { LineChart } from '@mui/x-charts/LineChart';
-import toast, { Toaster } from 'react-hot-toast';
+
 
 
 
@@ -66,30 +65,30 @@ const Home = () => {
    return (
       <div className="p-5 md:grid-cols-2 grid place-content-center  ">
          <div className='border-2 border-teal-400 p-12 w-full mb-7 md:mb-0'>
-            <h2 className="text-xl font-semibold ">Track Record Form</h2>
+            <h2 className="text-xl font-semibold ">Track Record</h2>
             <div className="divider bg-black  h-[2px] mb-3 "></div>
             <form onSubmit={handleSubmitStep1} className="space-y-3">
                <div className='grid md:grid-cols-2 gap-2 w-full'>
                   {/* Project Name */}
                   <div>
                      <label className="block font-medium">Project Name:</label>
-                     <input required={true} type="text" value={projectName} onChange={(e) => setProjectName(e.target.value)} className=" px-4 py-1 border-2 border-gray-300 rounded-lg" />
+                     <input type="text" value={projectName} onChange={(e) => setProjectName(e.target.value)} className=" px-4 py-1 border-2 border-gray-300 rounded-lg" />
 
                   </div>
                   {/* Project Decription */}
                   <div>
                      <label className="block font-medium">Project Description:</label>
-                     <input required={true} type="text" value={projectDescription} onChange={(e) => setProjectDescription(e.target.value)} className=" px-4 py-1 border-2 border-gray-300 rounded-lg" />
+                     <input type="text" value={projectDescription} onChange={(e) => setProjectDescription(e.target.value)} className=" px-4 py-1 border-2 border-gray-300 rounded-lg" />
                   </div>
                   {/* Client */}
                   <div>
                      <label className="block font-medium">Client:</label>
-                     <input l required={true} type="text" value={client} onChange={(e) => setClient(e.target.value)} className=" px-4 py-1 border-2 border-gray-300 rounded-lg" />
+                     <input l type="text" value={client} onChange={(e) => setClient(e.target.value)} className=" px-4 py-1 border-2 border-gray-300 rounded-lg" />
                   </div>
                   {/* Contractor */}
                   <div>
                      <label className="block font-medium">Constractor:</label>
-                     <input required={true} type="text" value={contractor} onChange={(e) => setContractor(e.target.value)} className="  px-4 py-1 border-2 border-gray-300 rounded-lg" />
+                     <input type="text" value={contractor} onChange={(e) => setContractor(e.target.value)} className="  px-4 py-1 border-2 border-gray-300 rounded-lg" />
                   </div>
                </div>
 
@@ -130,15 +129,27 @@ const Home = () => {
                               <input required={true} type="number" value={userInput_maxZ} onChange={(e) => setUserInput_maxZ(e.target.value)} className="w-full px-4 py-1 border-2 border-gray-300 rounded-lg" />
                            </div>
                         </div>
-
                      </div>}
 
                   <div className='space-x-3'>
-                     <Link to={'/result'}><button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" > Next </button></Link>
 
+                     {csvFile ?
+                        <button type="submit" className="btn btn-info btn-sm"
+                           disabled={(!projectName | !projectDescription | !client | !contractor)} >
+                           <Link to={'/result'}>
+                              Next
+                           </Link>
+                        </button>
+                        :
+                        <button type="submit" className="btn btn-info btn-sm"
+                           disabled={(!projectName | !projectDescription | !client | !contractor | !userInput_maxX | !userInput_maxY | !userInput_maxZ | !userInput_minX | !userInput_minY | !userInput_minZ)} >
+                           <Link to={'/result'}>
+                              Next
+                           </Link>
+                        </button>
+                     }
 
-
-                     {csvFile && <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" > Show Chart </button>}
+                     {csvFile && <button type="submit" className="btn btn-info btn-sm" > Show Chart </button>}
                   </div>
                </div>
 

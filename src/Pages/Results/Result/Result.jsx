@@ -69,8 +69,8 @@ const Result = () => {
 
    return (
       <div className='mx-auto grid md:grid-cols-2 place-items-center '>
-         <div className='mx-auto relative mt-2 '>
-            <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 absolute right-4 md:right-14 top-3 md:top-6" onClick={exportPDF}>Download PDF</button>
+         <div className='mx-auto relative mt-2 w-[350px] md:w-full'>
+            <button className="btn btn-info btn-sm absolute right-4 md:right-14 top-3 md:top-6" onClick={exportPDF}>Download PDF</button>
             {/* <h2>This Result Page</h2> */}
             <div className="space-y-4 md:w-[700px] border-2 p-4 md:p-8 rounded-md md:ml-2">
                <h2 className='ml-2 md:ml-8'>Track Record Result</h2>
@@ -117,13 +117,13 @@ const Result = () => {
 
 
          {csvFile &&
-            <div className='mx-auto mb-10 mt-2'>
+            <div className='mx-auto mb-10 mt-2 '>
                <h1 className='text-3xl  text-center mb-3'>Input Values</h1>
                <div className="divider bg-black h-1 mb-2"></div>
                <div className="overflow-x-auto md:w-[600px] md:h-[400px] scroll-my-5  ">
                   <table className="table table-xs w-full">
                      <thead >
-                        <tr className='grid grid-cols-3  '>
+                        <tr className='grid grid-cols-3  place-items-center'>
                            {/* <th>#</th> */}
                            <th>X-Index</th>
                            <th>Y-Index</th>
